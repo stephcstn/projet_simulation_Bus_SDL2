@@ -58,10 +58,11 @@ typedef enum{ depart_vers_arrivee, arrivee_vers_depart} t_sens_parcours;
 
 typedef struct{
     int idBus;
-    t_liste_station positionSurLaLigneDeBus;  //la derniere station atteinte (dans la liste) du bus est dans le champ pdata, stocké dans un Tcellule
-    int posXBus, posYBus;                   //coord du bus pixel par pixel pour les trajets
-    int idLigneBusActuelle;                 //un bus suit une ligne de bus à un instant t et peut en changer
+    t_liste_station positionSurLaLigneDeBus; //la derniere station atteinte (dans la liste) du bus est dans le champ pdata, stocké dans un Tcellule
+    int posXBus, posYBus;                    //coord du bus pixel par pixel pour les trajets
+    int idLigneBusActuelle;                  //un bus suit une ligne de bus à un instant t et peut en changer
     t_sens_parcours sensParcours;
+    int hasPrintedTerminus;                  // Champ pour vérifier si le message du terminus a été imprimé
 } type_bus;
 
 typedef type_bus *t_bus;
@@ -78,6 +79,8 @@ char *getNomStation( t_station *myStation);
 int getPosXStation( t_station *myStation );
 int getPosYStation( t_station *myStation );
 int getIdLigneTroncon(t_station *myStation);
+t_station* getStationParId(int id, t_ligne* ligne_bus);
+int getIdLigneBusStation(t_station* myStation, t_ligne* tab_ligne) ;
 int getDistanceCumule(t_station *myStation);
 int getTempsCumule(t_station *myStation);
 int getCoutTemps(t_station *myStation);
@@ -92,8 +95,7 @@ int getPosYBus( t_bus myBus );
 int getIdBus( t_bus myBus );
 int getIdLigneActuelleDuBus( t_bus myBus );
 t_sens_parcours getSensParcours(t_bus myBus);
-t_liste_station getActualStation( t_bus myBus );
-int getIdLigneBus(t_bus myBus);
+int getIdLigneBusStation(t_station* myStation, t_ligne* tab_ligne);
 t_liste_station getPositionSurLaLigneDeBus(t_bus myBus);
 
 //Setteurs

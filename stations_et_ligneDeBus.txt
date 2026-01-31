@@ -1,0 +1,19 @@
+3
+L1 5
+10,10,1,Charles_de_Gaulle
+300,400,2,Jules_Ferry
+10,410,3,Jacques_Brel
+200,350,4,Saint_Exupery
+500,410,5,Stalingrad
+L2 5
+10,100,6,Republique
+30,300,7,Jules_Ferry
+100,40,8,Place_d'armes
+300,30,9,Place_de_l'etoile
+400,210,10,Bobigny
+L3 5
+150,10,11,Clemenceau
+300,100,12,Montmartre
+600,610,13,Tour_eiffel
+70,350,14,Les_invalides
+150,510,15,Gare_du_nord

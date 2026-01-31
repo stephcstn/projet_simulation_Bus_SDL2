@@ -75,9 +75,7 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="stations_et_ligneDeBus.data">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="stations_et_ligneDeBus.txt" />
 		<Unit filename="types.c">
 			<Option compilerVar="CC" />
 		</Unit>

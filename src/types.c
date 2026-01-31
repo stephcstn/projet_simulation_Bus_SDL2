@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "types.h"
+#define SORTIE1 "stations_et_ligneDeBus.txt"
 
 void afficheStation( t_station *station){
     if (station == NULL){
-        printf("\nerreur station non allouée!\n");
+        printf("\nerreur station non allouee!\n");
     }
     else{
         if (station->arret_ou_troncon == ARRET){
-            printf("\nSTATION idStation: %d, Station : %s, posX = %d, posY = %d", station->idStation, station->nomStation, station->posX, station->posY);
+            t_date date = station->dateDerniereMaintenance;
+            printf("\nSTATION idStation: %d, Station : %s, posX = %d, posY = %d, cout_maintenance = %d, date = %d/%d/%d", station->idStation, station->nomStation, station->posX, station->posY, station->coutMaintenance , date.jour, date.mois, date.annee);
         }
-        else{ //alors le noeud est un tronçon
-            printf("\n\nTRONCON idLigneBus: %d, temps: %d sec, distance à parcourir: %d mètres", station->idLigneBus, station->coutTemps, station->coutDistance);
+        else{ //alors le noeud est un tronï¿½on
+            printf("\n\nTRONCON idLigneBus: %d, temps: %d sec, distance a parcourir: %d metres", station->idLigneBus, station->coutTemps, station->coutDistance);
             afficheStation(station->depart);
             afficheStation(station->arrivee);
-            printf("\nfin tronçon\n");
+            printf("\nfin troncon\n");
         }
     }
 }
@@ -54,13 +57,55 @@ int getPosYStation( t_station *myStation ){
 }
 
 int getIdLigneTroncon(t_station *myStation){
-    //une station n'est pas liée à une ligne, seulement le troncon
+    //une station n'est pas liï¿½e ï¿½ une ligne, seulement le troncon
     if (getTypeNoeud(myStation)==TRONCON)
         return myStation->idLigneBus;
     else{
         printf("\n(getIdLigneTroncon) Erreur algo, vous n etes pas sur un troncon");
         return -1;
     }
+}
+
+
+t_station* getStationParId(int id, t_ligne* ligne_bus) {
+    for (int i = 0; ligne_bus[i].depart != NULL; i++) {
+        t_liste_station courant = ligne_bus[i].depart;
+        while (courant != NULL) {
+            if (courant->pdata->idStation == id) {
+                return courant->pdata;
+            }
+            courant = courant->suiv;
+        }
+    }
+    return NULL;
+}
+
+
+int getIdLigneBusStation(t_station* myStation, t_ligne* tab_ligne) {
+    FILE *f_in;
+    int n_ligne;
+
+    // Ouverture du fichier
+    if ((f_in = fopen(SORTIE1, "r")) == NULL) {
+        fprintf(stderr, "\nErreur: Impossible de lire le fichier %s\n", SORTIE1);
+        return -1;
+    }
+
+    fscanf(f_in, "%d", &n_ligne); // Lecture du nombre de lignes
+
+    fclose(f_in);
+
+    for (int i = 0; i < n_ligne; i++) {
+        int id_ligne_bus = tab_ligne[i].idLigneBus;
+        t_liste_station courant = tab_ligne[i].depart;
+        while (courant != NULL) {
+            if (courant->pdata == myStation) {
+                return id_ligne_bus;
+            }
+            courant = courant->suiv;
+        }
+    }
+    return -1; // station non trouvï¿½e
 }
 
 int getDistanceCumule(t_station *myStation){
@@ -113,6 +158,8 @@ t_sens_parcours getSensParcours(t_bus myBus){
 t_liste_station getPositionSurLaLigneDeBus(t_bus myBus){
     return myBus->positionSurLaLigneDeBus;
 }
+
+
 
 
 
@@ -209,12 +256,11 @@ void setCoutMaintenance(t_station *myStation, int couts) {
     if (couts >= 10 && couts <= 100) {
         myStation->coutMaintenance = couts;
     } else {
-        printf("Erreur: le coût de maintenance doit être entre 10 et 100 Kilo-Euros.\n");
+        printf("Erreur: le coï¿½t de maintenance doit ï¿½tre entre 10 et 100 Kilo-Euros.\n");
     }
 }
 
 void setDateDerniereMaintenance(t_station *myStation) {
-    srand(time(NULL));
 
     int jour = rand() % 31 + 1;
     int mois = rand() % 12 + 1;
