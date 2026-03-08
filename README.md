@@ -30,3 +30,5 @@ Le projet utilise un `Makefile` pour automatiser la compilation. Ouvrez un termi
 
 ```powershell
 mingw32-make
+
+mingw32-make clean
