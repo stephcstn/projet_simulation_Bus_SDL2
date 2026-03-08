@@ -56,12 +56,12 @@ brew install sdl2 make
 ## Compilation
 La compilation génère l'exécutable dans le dossier bin/Debug/.
 
-# Windows (PowerShell/CMD) :
+### Windows (PowerShell/CMD) :
 
 ``` PowerShell
 mingw32-make
 ```
-# Linux / macOS :
+### Linux / macOS :
 
 ```Bash
 make
@@ -69,12 +69,12 @@ make
 ## Exécution
 Lancez le simulateur directement depuis la racine du projet.
 
-# Windows :
+### Windows :
 
 ```PowerShell
 ./bin/Debug/main.exe
 ```
-# Linux / macOS :
+### Linux / macOS :
 
 ```Bash
 ./bin/Debug/main
@@ -82,12 +82,12 @@ Lancez le simulateur directement depuis la racine du projet.
 ## Nettoyage
 Pour supprimer les fichiers objets (.o) et l'exécutable afin de repartir sur une installation propre :
 
-# Windows :
+### Windows :
 
 ```PowerShell
 mingw32-make clean
 ```
-# Linux / macOS :
+### Linux / macOS :
 
 ```Bash
 make clean
