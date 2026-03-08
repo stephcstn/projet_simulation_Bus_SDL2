@@ -24,7 +24,7 @@ Pour compiler ce projet, vous avez besoin de :
 2.  La bibliothèque **SDL2** (incluse dans le dépôt pour Windows).
 3.  L'outil **Make** (`mingw32-make` sur Windows).
 
-##Windows (via MSYS2)
+## Windows (via MSYS2)
 C'est la méthode recommandée pour compiler avec le Makefile fourni.
 
 1.  Téléchargez et installez MSYS2.
