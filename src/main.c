@@ -6,7 +6,6 @@
 #include "SDL_VSYNC.h"
 #include "listeDouble.h"
 
-//#include "types.h"
 #include "ligneBus.h"
 
 #include <stdio.h>
@@ -77,9 +76,6 @@ int main(int argc, char* argv[])
         t_bus bus2 = tab_bus[1];
         t_bus bus3 = tab_bus[2];
         t_bus bus4 = tab_bus[3];
-
-
-
 
 
         //affiche sur la console les stations et troncons des lignes de bus

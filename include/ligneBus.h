@@ -28,8 +28,8 @@ bool ligneBusVide( t_liste_station l);
 int getPosXListeStation( t_liste_station myStationInListe );
 int getPosYListeStation( t_liste_station myStationInListe );
 
-//renseigne incX et incY pour le déplacement du sprite dans le main, ET modifie la position du bus qd il atteint les coord X Y de la station d'arrivée
-void deplaceBus1(t_bus myBus, t_sens_parcours sens_deplacement, int *incXSprite, int *incYSprite);
+//renseigne incX et incY pour le dï¿½placement du sprite dans le main, ET modifie la position du bus qd il atteint les coord X Y de la station d'arrivï¿½e
+void deplaceBus(t_bus myBus, t_sens_parcours sens_deplacement, int *incXSprite, int *incYSprite);
 
 void busSurStation( t_bus myBus, t_liste_station myStation, t_sens_parcours sens);
 void busSurLigneX( t_bus myBus, int idLigneX );
